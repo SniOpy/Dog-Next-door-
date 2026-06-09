@@ -49,7 +49,7 @@ function Humburger() {
             <NavLink className="menu-item" to="/account/form">
               Profil form
             </NavLink>
-            <NavLink className="menu-item" to="/index">
+            <NavLink className="menu-item" to="/account/inbox">
               Boite de reception
             </NavLink>
           </>
@@ -58,14 +58,18 @@ function Humburger() {
           Home
         </NavLink>
         <NavLink className="menu-item" to="/search">
-          Search
+          Chercher un pet sitter
         </NavLink>
-        <NavLink className="menu-item" to="/login">
-          Connexion
-        </NavLink>
-        <NavLink className="menu-item" to="/subscribe">
-          S&apos;inscrire
-        </NavLink>
+        {!firstname && (
+          <>
+            <NavLink className="menu-item" to="/login">
+              Connexion
+            </NavLink>
+            <NavLink className="menu-item" to="/subscribe">
+              S&apos;inscrire
+            </NavLink>
+          </>
+        )}
       </nav>
       <div
         id="menu-bg"

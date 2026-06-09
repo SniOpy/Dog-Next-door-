@@ -28,15 +28,15 @@ function Header() {
             <img className="menu__logo" src={mainLogo} alt="main-logo" />
           </NavLink>
           <NavLink className="menu__menu-item" to="/search">
-            Search
+            Chercher un pet sitter
           </NavLink>
         </div>
-        <NavLink className="menu__menu-item" to="/account/inbox">
-          Boite de reception
-        </NavLink>
         {firstname && (
           <div className="menu__nav-wrapper">
             <div className="menu__nav-menu">
+              <NavLink className="menu__menu-item" to="/account/inbox">
+                Boite de reception
+              </NavLink>
               <NavLink className="menu__menu-item" to="/account">
                 Profil
               </NavLink>

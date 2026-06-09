@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: odog-backend
+    runtime: node
+    rootDir: back
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PG_SSL
+        value: "false"
