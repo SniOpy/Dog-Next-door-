@@ -62,7 +62,10 @@ function Header() {
             <NavLink className="menu__menu-item" to="/login">
               Connexion
             </NavLink>
-            <NavLink className="menu__menu-item" to="/subscribe">
+            <NavLink
+              className="menu__menu-item menu__menu-item--cta"
+              to="/subscribe"
+            >
               S&apos;inscrire
             </NavLink>
           </div>

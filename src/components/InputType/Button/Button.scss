@@ -2,25 +2,15 @@
 @use '../../../styles/variables' as v;
 
 .form__submit-button {
+  @include v.btn-primary;
   display: block;
-  padding: 10px 20px;
-  margin: 20px auto;
-  border-radius: 10px;
-  border: 2px solid v.$color-border;
-  font-weight: 400;
-  font-size: 20px;
-  color: v.$color-text-dark;
-  background-color: v.$color-main;
-  transition: 0.1s;
-
-  &:hover {
-    transform: scale(1.1);
-  }
+  width: 100%;
+  margin: 24px auto 4px;
 }
 
 @media screen and (max-width: 414px) {
   .form__submit-button {
-    @include v.label-phone;
-    padding: 5px;
+    padding: 12px 18px;
+    font-size: 15px;
   }
 }

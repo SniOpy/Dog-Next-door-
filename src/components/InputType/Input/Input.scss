@@ -1,34 +1,31 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
+
 .input {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
 
   &__field {
-    @include v.input-field;
-
-    &:focus {
-      outline: none;
-      border-color: v.$color-text;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
+    @include v.field-premium;
   }
 
   &__label {
-    @include v.label;
-    margin-top: 8px;
+    color: v.$color-text-dark;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
   }
 }
 
 @media screen and (max-width: 414px) {
   .input__label {
-    @include v.label-phone;
+    font-size: 13px;
   }
-}
 
-@media screen and (max-width: 414px) {
   .input__field {
-    @include v.input-field-phone;
+    font-size: 14px;
   }
 }

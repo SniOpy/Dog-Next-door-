@@ -5,6 +5,41 @@ $color-text-dark: rgb(64, 67, 71);
 $color-hower: rgb(35, 34, 34);
 $color-flash: rgb(176, 224, 230);
 
+// ===== Premium design tokens (identité blanc / bleu poudré enrichie) =====
+// Échelle de marque dérivée du bleu poudré
+$brand-soft: #b0e0e6; // bleu poudré existant
+$brand-tint: #eaf6f8; // voile très clair
+$brand: #1f7a8c; // accent profond / CTA
+$brand-strong: #156172; // hover / pressed
+
+// Neutres raffinés
+$ink: #1b2a33; // titres
+$surface: #ffffff;
+$surface-muted: #f6f9fa;
+$line: #e6ecee;
+$muted: #9aa0a8;
+
+// Rayons
+$radius-card: 16px;
+$radius-field: 12px;
+$radius-pill: 999px;
+
+// Ombres
+$shadow-card: 0 2px 8px rgba(27, 42, 51, 0.06), 0 1px 2px rgba(27, 42, 51, 0.04);
+$shadow-float: 0 20px 45px rgba(21, 97, 114, 0.18);
+
+// Transitions
+$transition-fast: 0.18s ease;
+$transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Overlay hero
+$overlay-hero: linear-gradient(
+  120deg,
+  rgba(15, 33, 41, 0.82) 0%,
+  rgba(31, 122, 140, 0.5) 55%,
+  rgba(176, 224, 230, 0.28) 100%
+);
+
 @mixin form-styling {
   background-color: $color-main;
   border-radius: 10px;
@@ -80,4 +115,82 @@ $color-flash: rgb(176, 224, 230);
 
 @mixin transition {
   transition: ease-in-out 0.2s;
+}
+
+// ===== Premium mixins =====
+@mixin premium-card {
+  background-color: $surface;
+  border-radius: $radius-card;
+  border: 1px solid $line;
+  box-shadow: $shadow-float;
+}
+
+@mixin btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: $radius-pill;
+  background: linear-gradient(135deg, $brand 0%, $brand-strong 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(31, 122, 140, 0.28);
+  transition: transform $transition-fast, box-shadow $transition-fast,
+    filter $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(31, 122, 140, 0.36);
+    filter: brightness(1.04);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(31, 122, 140, 0.35);
+    outline-offset: 2px;
+  }
+}
+
+@mixin field-premium {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: $ink;
+  background-color: $surface;
+  border: 1.5px solid $line;
+  border-radius: $radius-field;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &::placeholder {
+    color: $muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $brand;
+    box-shadow: 0 0 0 4px rgba(31, 122, 140, 0.12);
+  }
+}
+
+@mixin section-title {
+  color: $ink;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@mixin eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $brand;
 }

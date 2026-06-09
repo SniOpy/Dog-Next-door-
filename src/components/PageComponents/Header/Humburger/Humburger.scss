@@ -18,7 +18,7 @@
 .bar {
   height: 5px;
   width: 100%;
-  background-color: v.$color-flash;
+  background-color: v.$brand;
   display: block;
   border-radius: 5px;
   transition: 0.3s ease;
@@ -49,7 +49,7 @@
   width: 0;
   height: 0;
   margin: 112px 15px 20px 65px;
-  background: v.$color-flash;
+  background: linear-gradient(135deg, v.$brand 0%, v.$brand-strong 100%);
   border-radius: 50%;
   transition: 0.3s ease;
 }
@@ -92,25 +92,31 @@
 }
 
 .menu-item {
-  @include v.title-nav;
-  color: v.$color-text;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
   text-decoration: none;
+  padding: 6px 0;
+  transition: opacity v.$transition-fast;
 
   &:hover {
-    @include v.hover;
+    opacity: 0.8;
   }
 }
 
 .menu-button {
   border: none;
-  background-color: v.$color-flash;
-
-  @include v.title-nav;
-  @include v.transition;
-  color: v.$color-text;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 0;
+  text-align: left;
+  transition: opacity v.$transition-fast;
 
   &:hover {
-    @include v.hover;
+    opacity: 0.8;
   }
 }
 @media screen and (max-width: 768px) {

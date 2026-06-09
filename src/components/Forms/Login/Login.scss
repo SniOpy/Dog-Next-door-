@@ -1,30 +1,139 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
-.page-wrapper {
+
+.page-wrapper.auth {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.auth__main {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 0;
+}
+
+/* ===== Brand panel (left) ===== */
+.auth__panel {
+  position: relative;
+  isolation: isolate;
+  background-image: url(../../../assets/chienv2.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 56px;
+  min-height: 540px;
+
+  &-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: v.$overlay-hero;
+  }
+
+  &-content {
+    color: #fff;
+    max-width: 460px;
+  }
+
+  &-logo {
+    width: 72px;
+    height: 64px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    margin-bottom: 24px;
+  }
+
+  &-title {
+    font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+    line-height: 1.18;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  &-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* ===== Form side (right) ===== */
+.auth__form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background-color: v.$surface;
+}
+
+.auth__card {
+  width: 100%;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
 }
-.login__form {
-  @include v.form-styling;
-  width: 50%;
+
+.auth__title {
+  @include v.section-title;
+  font-size: 2rem;
+  margin-bottom: 6px;
 }
 
-.main-login {
-  position: relative;
-  height: 100vh;
-  background-image: url(../../../assets/chienv2.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  flex-grow: 1;
+.auth__subtitle {
+  font-size: 1rem;
+  color: v.$color-text;
+  margin-bottom: 28px;
 }
-.container-login {
-  max-width: 1300px;
-  margin: 0 auto;
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth__switch {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 15px;
+  color: v.$color-text;
+}
+
+.auth__switch-link {
+  color: v.$brand;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    color: v.$brand-strong;
+    text-decoration: underline;
+  }
 }
 
 .error {
-  margin-top: 15px;
-  color: red;
-  font-weight: 700;
+  margin-top: 2px;
+  color: #d64545;
+  font-weight: 600;
   font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 860px) {
+  .auth__main {
+    grid-template-columns: 1fr;
+  }
+
+  .auth__panel {
+    min-height: 280px;
+    padding: 36px 28px;
+  }
+
+  .auth__form-side {
+    padding: 40px 20px 56px;
+  }
 }

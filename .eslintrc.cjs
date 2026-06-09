@@ -12,9 +12,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended', // must be the last one
   ],
-  {
-  //  ignorePatterns: ["**/*.js"]
-  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

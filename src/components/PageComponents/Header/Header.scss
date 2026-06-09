@@ -1,23 +1,35 @@
 @use '../../../styles/reset';
 @use '../../../styles/variables' as v;
+
 .wrapper {
-  border-bottom: 2px solid v.$color-border;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid v.$line;
+  box-shadow: 0 1px 0 rgba(27, 42, 51, 0.02), 0 6px 18px rgba(27, 42, 51, 0.04);
 }
+
 .menu {
   margin: 0 auto;
-  padding: 10px;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   justify-content: space-between;
-  background-color: v.$color-main;
   max-width: 1500px;
 
   &__logo {
-    font-size: 24px;
-    font-weight: bold;
-    width: 75px;
-    height: 65px;
+    width: 64px;
+    height: 56px;
+    object-fit: contain;
+    transition: transform v.$transition-fast;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &__nav-wrapper {
@@ -30,50 +42,101 @@
 
   &__nav-menu {
     display: flex;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 15px;
+    gap: 22px;
   }
+
   &__menu-item {
-    margin-right: 20px;
+    position: relative;
     text-decoration: none;
-    @include v.title-nav;
-    @include v.transition;
+    color: v.$ink;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 6px 2px;
+    transition: color v.$transition-fast;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, v.$brand, v.$brand-soft);
+      transition: width v.$transition-smooth;
+    }
 
     &:hover {
-      @include v.hover;
+      color: v.$brand;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &.active {
+      color: v.$brand;
+    }
+
+    &--cta {
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: v.$radius-pill;
+      background: linear-gradient(135deg, v.$brand 0%, v.$brand-strong 100%);
+      box-shadow: 0 8px 18px rgba(31, 122, 140, 0.26);
+
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 22px rgba(31, 122, 140, 0.34);
+      }
     }
   }
 
   &__menu-connection {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 16px;
     align-items: center;
 
     strong {
-      margin-right: 10px;
-      @include v.title-nav;
+      color: v.$ink;
+      font-weight: 700;
     }
   }
 }
 
 .menu__menu-button {
-  border: none;
-  background-color: v.$color-main;
-  @include v.title-nav;
-  @include v.transition;
+  border: 1.5px solid v.$line;
+  background-color: transparent;
+  color: v.$ink;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: v.$radius-pill;
+  cursor: pointer;
+  transition: border-color v.$transition-fast, color v.$transition-fast,
+    background-color v.$transition-fast;
 
   &:hover {
-    @include v.hover;
+    border-color: v.$brand;
+    color: v.$brand;
+    background-color: v.$brand-tint;
   }
 }
 
 .visible-wrapper {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 24px;
   align-items: center;
 }
 

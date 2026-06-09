@@ -4,90 +4,391 @@
 .page-wrapper {
   display: flex;
   flex-direction: column;
+
+  &.home {
+    min-height: 100vh;
+  }
 }
 
-.main {
-  height: 100vh;
+.home__main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  isolation: isolate;
   background-image: url(../../assets/chienv2.jpg);
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  flex-grow: 1;
 
-  .container-home {
-    max-width: 1300px;
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: v.$overlay-hero;
+  }
+
+  &__inner {
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 72px 24px 88px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
 
-    .main-form {
-      @include v.form-styling;
-      width: 70%;
+  &__content {
+    color: #fff;
+    max-width: 560px;
+  }
 
-      &__label {
-        @include v.label;
-        margin-top: 10px;
-        margin-bottom: 0;
+  &__eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: v.$brand-soft;
+    margin-bottom: 18px;
+  }
 
-        @media screen and (max-width: 414px) {
-          @include v.label-phone;
-        }
-      }
+  &__title {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  }
 
-      &__title-animal {
-        @include v.title-form-text;
-        background-color: v.$color-flash;
-        margin-bottom: 0;
-        border-radius: 10px 10px 0 0;
+  &__subtitle {
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 28px;
+  }
 
-        @media screen and (max-width: 414px) {
-          @include v.title-form-text-phone;
-        }
-      }
+  &__highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
 
-      &__radio-animal {
-        display: flex;
-        flex-direction: row;
-        gap: 40px;
-        justify-content: center;
-        background-color: v.$color-flash;
-        border-radius: 0 0 10px 10px;
-        padding-bottom: 10px;
+    li {
+      position: relative;
+      padding-left: 26px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
 
-        @media screen and (max-width: 414px) {
-          gap: 5px;
-        }
-
-        .radio-animal__title {
-          @include v.label;
-          background-color: v.$color-flash;
-          margin-bottom: 0;
-          border-radius: 10px 10px 0 0;
-        }
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: v.$brand-soft
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23156172' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4L19 7'/%3E%3C/svg%3E")
+          center / 12px no-repeat;
       }
     }
   }
 }
 
-.radio {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
-  margin-top: -23px;
-}
+/* ===== Search card ===== */
+.search-card {
+  @include v.premium-card;
+  width: 100%;
+  max-width: 460px;
+  margin-left: auto;
+  padding: 28px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(2px);
 
-@media screen and (max-width: 414px) {
-  .radio {
+  &__title {
+    @include v.section-title;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+
+  &__field {
     display: flex;
     flex-direction: column;
+    gap: 8px;
   }
-}
 
-@media screen and (max-width: 414px) {
-  .main-form__label {
-    @include v.label-phone;
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: v.$color-text-dark;
   }
-}
 
-@media screen and (max-width: 414px) {
-  .main-form__radio-animal {
+  /* Animal toggle (cat / dog) */
+  &__segment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    .form__radio {
+      width: 100%;
+    }
+
+    .form__radio-label {
+      flex-direction: row;
+      gap: 10px;
+      height: auto;
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid v.$line;
+      border-radius: v.$radius-field;
+      color: v.$color-text-dark;
+      box-shadow: none;
+      transition: border-color v.$transition-fast,
+        background-color v.$transition-fast, box-shadow v.$transition-fast;
+
+      > span {
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
+
+    .form__icon {
+      object-fit: contain;
+      width: 34px;
+      height: 34px;
+    }
+
+    .form__radio-input:checked + .form__radio-label {
+      border-color: v.$brand;
+      background-color: v.$brand-tint;
+      box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.12);
+      color: v.$ink;
+    }
+  }
+
+  /* Distance pills */
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+
+    .radio-simple {
+      gap: 0;
+    }
+
+    .radio-label {
+      padding: 8px 16px;
+      border: 1.5px solid v.$line;
+      border-radius: v.$radius-pill;
+      font-weight: 600;
+      font-size: 14px;
+      color: v.$color-text-dark;
+      transition: border-color v.$transition-fast,
+        background-color v.$transition-fast, color v.$transition-fast;
+
+      &::before {
+        display: none;
+      }
+
+      &::after {
+        content: ' km';
+      }
+
+      &:hover {
+        border-color: v.$brand;
+        color: v.$brand;
+      }
+    }
+
+    .radio-input:checked + .radio-label {
+      background: linear-gradient(135deg, v.$brand 0%, v.$brand-strong 100%);
+      border-color: transparent;
+      color: #fff;
+    }
+  }
+
+  /* Size cards */
+  &__sizes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 0;
+
+    .form__radio-label {
+      height: auto;
+      padding: 12px 6px;
+      gap: 6px;
+      border: 1.5px solid v.$line;
+      border-radius: v.$radius-field;
+      color: v.$color-text;
+      box-shadow: none;
+      transition: border-color v.$transition-fast,
+        background-color v.$transition-fast, box-shadow v.$transition-fast;
+
+      > span {
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+
+    .form__icon {
+      object-fit: contain;
+      width: 32px;
+      height: 32px;
+    }
+
+    .form__radio-input:checked + .form__radio-label {
+      border-color: v.$brand;
+      background-color: v.$brand-tint;
+      box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.12);
+      color: v.$ink;
+    }
+  }
+
+  /* Address + date inputs inside the card */
+  .signup__localisation,
+  .autocompletion-city,
+  .calendarWrap {
+    width: 100%;
+  }
+
+  .input__label,
+  .legend {
+    font-size: 14px;
+    font-weight: 600;
+    color: v.$color-text-dark;
+    margin: 0 0 8px;
+  }
+
+  .autocompletion-city__input,
+  .inputBox {
+    @include v.field-premium;
+  }
+
+  .autocompletion-city {
+    position: relative;
+  }
+
+  .autocompletion-city__ul {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 6px;
+    border: 1px solid v.$line;
+    border-radius: v.$radius-field;
+    background: v.$surface;
+    box-shadow: v.$shadow-card;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+  }
+
+  .autocompletion-city__ul__li {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color v.$transition-fast;
+
+    &:hover {
+      background-color: v.$brand-tint;
+    }
+  }
+
+  .form__submit-button {
+    margin-top: 8px;
+  }
+}
+
+/* ===== Features strip ===== */
+.features {
+  background-color: v.$surface-muted;
+  border-top: 1px solid v.$line;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 100%;
+  padding: 56px clamp(24px, 6vw, 96px);
+}
+
+.feature {
+  background: v.$surface;
+  border: 1px solid v.$line;
+  border-radius: v.$radius-card;
+  padding: 28px;
+  box-shadow: v.$shadow-card;
+  transition: transform v.$transition-fast, box-shadow v.$transition-fast;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: v.$shadow-float;
+  }
+
+  &__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: v.$brand-tint;
+    color: v.$brand;
+    margin-bottom: 16px;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  &__title {
+    @include v.section-title;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: v.$color-text;
+  }
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 20px 64px;
+  }
+
+  .search-card {
+    margin: 0 auto;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search-card {
+    padding: 22px 18px 24px;
+  }
+
+  .search-card__sizes {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
